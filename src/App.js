@@ -11,11 +11,26 @@ class App extends React.Component {
     address: "HN",
     age: 25
   }
+handleClick(event){
+  console.log(event)
+  console.log("random "+Math.random(),this.state.name)
 
+  this.setState({
+    name: "Vũ Phúc Anh",
+    age: Math.random() +1
+  })
+
+}
+
+handleOnMouseOver(event){
+  console.log(event)
+}
   render() {
     return (
       <div>
-My name is {this.state.name}
+        My name is {this.state.name} and from {this.state.address}
+       <br></br> I'm {this.state.age}
+        <button onClick={(event)=>this.handleClick(event)}>Click me!</button>
       </div>
     )
   }
