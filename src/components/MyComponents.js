@@ -2,13 +2,15 @@
 // fucntion component
 
 import React from "react";
+import UserInfo from "./UserInfo";
 
-class MyComponent extends React.Component{
-    //JSX
-    render(){
-        return  (
-            <div> my first component {Math.random()}</div>
+class MyComponent extends React.Component {
+    render() {
+        return (
+            <div>
 
+                <UserInfo />
+            </div>
         )
     }
 }
