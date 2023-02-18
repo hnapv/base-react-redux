@@ -9,11 +9,12 @@ import {
     SidebarContent,
 } from 'react-pro-sidebar';
 
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
+import { FaGem } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
 
-import {DiReact} from "react-icons/di"
-import {MdDashboard} from "react-icons/md"
+import { DiReact } from "react-icons/di"
+import { MdDashboard } from "react-icons/md"
+import { Link } from 'react-router-dom';
 
 import './SideBar.scss'
 
@@ -41,7 +42,7 @@ const SideBar = (props) => {
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        <DiReact size={'3em'} color={"00bfff"}/>
+                        <DiReact size={'3em'} color={"00bfff"} />
                         Hoi Dan IT
                     </div>
                 </SidebarHeader>
@@ -50,9 +51,10 @@ const SideBar = (props) => {
                     <Menu iconShape="circle">
                         <MenuItem
                             icon={<MdDashboard />}
-                            // suffix={<span className="badge red">New</span>}
+                        // suffix={<span className="badge red">New</span>}
                         >
                             Dashboard
+                            <Link to={"/admins"} />
                         </MenuItem>
                         {/* <MenuItem icon={<FaGem />}> components </MenuItem> */}
                     </Menu>
@@ -60,10 +62,13 @@ const SideBar = (props) => {
                         <SubMenu
                             // suffix={<span className="badge yellow">3</span>}
                             // icon={<FaRegLaughWink />}
-                            icon={<FaGem/>}
+                            icon={<FaGem />}
                             title="Features"
                         >
-                            <MenuItem> Quản lý Users</MenuItem>
+                            <MenuItem>
+                                Quản lý Users
+                                <Link to={"/admins/manage-users"} />
+                            </MenuItem>
                             <MenuItem> Quản lý bài Quiz</MenuItem>
                             <MenuItem> Quản lý câu hỏi</MenuItem>
                         </SubMenu>
@@ -84,7 +89,6 @@ const SideBar = (props) => {
                             className="sidebar-btn"
                             rel="noopener noreferrer"
                         >
-                            <FaGithub />
                             <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
                                 AnhVP
                             </span>
