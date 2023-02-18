@@ -1,45 +1,48 @@
-.manage-user-container{
-    .title{
+.manage-user-container {
+padding: 10px;
 
+  .title {
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  .users-content {
+    .btn-add-new{
+        margin: 15px 0;
     }
-
-    .users-content{
-
-    }
+  }
 }
 
-.modal-add-user{
-    .img-preview{
-  
-        border: 1px dashed #ccc;
-        border-radius: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #ccc;
-        
-        img{
-            height: 150px;
-            max-width:100%;
-            max-height:100%;
-        }
-        
-    }
-    
-    .label-upload {
-        display: flex;
-        align-items: center;
-        gap: 5px;
+.modal-add-user {
+  .img-preview {
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ccc;
 
-        width: fit-content;
-        padding: 3px 10px;
-        background: #eeeeee;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-
-        &:hover{
-            background-color: #dcdcdc;
-        }
+    img {
+      height: 150px;
+      max-width: 100%;
+      max-height: 100%;
     }
+  }
+
+  .label-upload {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    width: fit-content;
+    padding: 3px 10px;
+    background: #eeeeee;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #dcdcdc;
+    }
+  }
 }
