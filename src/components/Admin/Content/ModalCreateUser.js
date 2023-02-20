@@ -6,7 +6,7 @@ import { FcPlus } from "react-icons/fc"
 import {postCreateNewUser} from "../../../services/apiServices"
 
 const ModalCreateUser = (props) => {
-    const { show, setShow } = props
+    const { show, setShow,fetchListUsers } = props
 
     const handleClose = () => {
         setShow(false);
@@ -22,7 +22,7 @@ const ModalCreateUser = (props) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [username, setUsername] = useState("")
-    const [role, setRole] = useState("USERS")
+    const [role, setRole] = useState("USER")
     const [image, setImage] = useState("")
     const [previewImage, setPreviewImage] = useState("")
 
@@ -62,6 +62,7 @@ const ModalCreateUser = (props) => {
         if(data && data.EC===0){
             toast.success(data.EM)
             handleClose()
+            await fetchListUsers()
         } 
         if(data && data.EC!==0){
             toast.error(data.EM)
@@ -117,7 +118,7 @@ const ModalCreateUser = (props) => {
                                 value={role}
                                 onChange={(event) => setRole(event.target.value)}
                             >
-                                <option value="USERS">USERS</option>
+                                <option value="USER">USER</option>
                                 <option value="ADMIN">ADMIN</option>
                             </select>
                         </div>
@@ -135,7 +136,7 @@ const ModalCreateUser = (props) => {
 
                         <div className='cole-md-12 img-preview'>
                             {previewImage ?
-                                <img src={previewImage} />
+                                <img src={previewImage} alt="Preview"/>
                                 :
                                 <span>Preview Image</span>
                             }
