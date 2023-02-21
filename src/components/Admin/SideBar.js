@@ -15,6 +15,7 @@ import sidebarBg from '../../assets/bg2.jpg';
 import { DiReact } from "react-icons/di"
 import { MdDashboard } from "react-icons/md"
 import { Link } from 'react-router-dom';
+import {AiOutlineCopyrightCircle} from "react-icons/ai"
 
 import './SideBar.scss'
 
@@ -90,6 +91,7 @@ const SideBar = (props) => {
                             rel="noopener noreferrer"
                         >
                             <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                                <AiOutlineCopyrightCircle />
                                 AnhVP
                             </span>
                         </a>
