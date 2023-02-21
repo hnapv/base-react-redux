@@ -1,7 +1,7 @@
 
 const TableUser = (props) => {
 
-    const {listUsers, handleClickBtnUpdate} = props
+    const {listUsers, handleClickBtnUpdate,handleClickBtnView} = props
   
     // const {handleClickBtnUpdate,handleClickBtnView} = props
     // const listUsers = [{
