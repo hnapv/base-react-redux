@@ -2,6 +2,7 @@ import { useState } from "react"
 import "./Register.scss"
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from 'react-toastify';
+import { validateEmail } from "../../utils/otherUtils";
 
 
 const Register = () => {
@@ -28,14 +29,20 @@ const Register = () => {
         if (!email) {
             return toast.warning("Email not entered")
         }
+        
+        const isValidEmail = validateEmail(email)
+        if(!isValidEmail){
+            toast.error("Invalid email")
+            return;
+        }
 
         if (!password) {
             return toast.warning("Password not entered")
         }
-        toast.success("Account success")
-        setEmail("")
-        setPassword("")
-        setUsername("")
+        // toast.success("Account success")
+        // setEmail("")
+        // setPassword("")
+        // setUsername("")
     }
 
 

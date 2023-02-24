@@ -8,33 +8,33 @@ const ModalViewUser = (props) => {
 
     const handleClose = () => {
         setShow(false);
-        setEmail("")
-        setPassword("")
-        setUsername("")
-        setRole("USER")
-        setPreviewImage("")
-        props.resetDataView()
+        // setEmail("")
+        // setPassword("")
+        // setUsername("")
+        // setRole("USER")
+        // setPreviewImage("")
+        // props.resetDataView()
     }
     // const handleShow = () => setShow(true);
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [username, setUsername] = useState("")
-    const [role, setRole] = useState("USER")
-    const [previewImage, setPreviewImage] = useState("")
+    // const [email, setEmail] = useState("")
+    // const [password, setPassword] = useState("")
+    // const [username, setUsername] = useState("")
+    // const [role, setRole] = useState("USER")
+    let previewImage=""
 
-    useEffect(() => {
-        console.log('run effect view', dataView)
+    // useEffect(() => {
+    //     console.log('run effect view', dataView)
         if (!_.isEmpty(dataView)) {
             //view state
-            setEmail(dataView.email)
-            setUsername(dataView.username)
-            setRole(dataView.role)
+            // setEmail(dataView.email)
+            // setUsername(dataView.username)
+            // setRole(dataView.role)
             if (dataView.image) {
-                setPreviewImage(`data:image/jpeg;base64,${dataView.image}`)
+                previewImage=(`data:image/jpeg;base64,${dataView.image}`)
             }
         }
-    }, [dataView])
+    // }, [dataView])
 
     console.log('check render')
 
@@ -57,7 +57,7 @@ const ModalViewUser = (props) => {
                             <input
                                 type="email"
                                 className="form-control"
-                                value={email}
+                                value={dataView.email}
                                 disabled
                             />
                         </div>
@@ -66,7 +66,7 @@ const ModalViewUser = (props) => {
                             <input
                                 type="password"
                                 className="form-control"
-                                value={password}
+                                value={dataView.password}
                                 disabled
 
                             />
@@ -76,7 +76,7 @@ const ModalViewUser = (props) => {
                             <input
                                 type="text"
                                 className="form-control"
-                                value={username}
+                                value={dataView.username}
                                 disabled
                             />
                         </div>
@@ -84,7 +84,7 @@ const ModalViewUser = (props) => {
                             <label className="form-label">Role</label>
                             <select
                                 className="form-select"
-                                value={role}
+                                value={dataView.role}
                                 disabled
                             >
                                 <option value="USER">USER</option>
@@ -98,7 +98,7 @@ const ModalViewUser = (props) => {
                                 :
                                 <span>Preview Image</span>
                             }
-                        </div>
+                        </div>      
 
                     </form>
                 </Modal.Body>

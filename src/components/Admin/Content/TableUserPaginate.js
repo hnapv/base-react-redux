@@ -1,22 +1,20 @@
+import ReactPaginate from "react-paginate"
+import { useState, useEffect } from "react";
 
-const TableUser = (props) => {
 
-    const {listUsers, handleClickBtnUpdate,handleClickBtnView,handleClickBtnDelete} = props
+const TableUserPaginate = (props) => {
 
-    // const { handleClickBtnUpdate, handleClickBtnView, handleClickBtnDelete } = props
-    // const listUsers = [{
-    //     id: 1,
-    //     username: "abc",
-    //     email: "fff",
-    //     role: "ADMIN"
-    // },
-    // {
-    //     id: 2,
-    //     username: "adfgbc",
-    //     email: "ffdfbf",
-    //     role: "ADMIN"
-    // }
-    // ]
+    const { listUsers, handleClickBtnUpdate, handleClickBtnView, handleClickBtnDelete, fetchListUsersWithPaginate, pageCount } = props
+
+
+
+
+    // Invoke when user click to request another page.
+    const handlePageClick = (event) => {
+        props.setCurrentPage(+event.selected + 1)
+        fetchListUsersWithPaginate(+event.selected + 1)
+        console.log(`User requested page number ${event.selected}, which is offset `);
+    };
 
     return (
         <>
@@ -65,8 +63,32 @@ const TableUser = (props) => {
                         </tr>}
                 </tbody>
             </table>
+            <div className="user-pagination">
+                <ReactPaginate
+                    nextLabel="Next >"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={3}
+                    marginPagesDisplayed={2}
+                    pageCount={pageCount}
+                    previousLabel="< Prev"
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakLabel="..."
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    containerClassName="pagination"
+                    activeClassName="active"
+                    renderOnZeroPageCount={null}
+                    forcePage={props.currentPage - 1}
+                />
+            </div>
+
         </>
     )
 }
 
-export default TableUser
+export default TableUserPaginate

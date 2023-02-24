@@ -3,10 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-toastify';
 import { FcPlus } from "react-icons/fc"
-import {postCreateNewUser} from "../../../services/apiServices"
+import { postCreateNewUser } from "../../../services/apiServices"
+import { validateEmail } from '../../../utils/otherUtils';
 
 const ModalCreateUser = (props) => {
-    const { show, setShow,fetchListUsers } = props
+    const { show, setShow, fetchListUsersWithPaginate } = props
 
     const handleClose = () => {
         setShow(false);
@@ -35,36 +36,31 @@ const ModalCreateUser = (props) => {
         }
     }
 
-    const validateEmail = (email) => {
-        return String(email)
-          .toLowerCase()
-          .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          );
-      };
 
     const handleSubmitCreateUser = async () => {
         //validate
         const isValidEmail = validateEmail(email)
-        if(!isValidEmail){
+        if (!isValidEmail) {
             toast.error("Invalid email")
             return;
         }
 
-        if(!password){
+        if (!password) {
             toast.error("Invalid password")
             return;
         }
 
 
-        let data = await postCreateNewUser(email,password,username,role,image)
+        let data = await postCreateNewUser(email, password, username, role, image)
         console.log("res==>", data)
-        if(data && data.EC===0){
+        if (data && data.EC === 0) {
             toast.success(data.EM)
             handleClose()
-            await fetchListUsers()
-        } 
-        if(data && data.EC!==0){
+            await fetchListUsersWithPaginate(1)
+            props.setCurrentPage(1)
+
+        }
+        if (data && data.EC !== 0) {
             toast.error(data.EM)
         }
     }
@@ -136,7 +132,7 @@ const ModalCreateUser = (props) => {
 
                         <div className='cole-md-12 img-preview'>
                             {previewImage ?
-                                <img src={previewImage} alt="Preview"/>
+                                <img src={previewImage} alt="Preview" />
                                 :
                                 <span>Preview Image</span>
                             }
