@@ -12,9 +12,8 @@ const ModalViewUser = (props) => {
         setPassword("")
         setUsername("")
         setRole("USER")
-        setImage("")
         setPreviewImage("")
-        // props.resetdataView()
+        props.resetDataView()
     }
     // const handleShow = () => setShow(true);
 
@@ -22,17 +21,15 @@ const ModalViewUser = (props) => {
     const [password, setPassword] = useState("")
     const [username, setUsername] = useState("")
     const [role, setRole] = useState("USER")
-    const [image, setImage] = useState("")
     const [previewImage, setPreviewImage] = useState("")
 
     useEffect(() => {
-        console.log('run effect', dataView)
+        console.log('run effect view', dataView)
         if (!_.isEmpty(dataView)) {
             //view state
             setEmail(dataView.email)
             setUsername(dataView.username)
             setRole(dataView.role)
-            setImage("")
             if (dataView.image) {
                 setPreviewImage(`data:image/jpeg;base64,${dataView.image}`)
             }

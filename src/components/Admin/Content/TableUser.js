@@ -1,20 +1,22 @@
 
 const TableUser = (props) => {
 
-    const {listUsers, handleClickBtnUpdate,handleClickBtnView} = props
-  
-    // const {handleClickBtnUpdate,handleClickBtnView} = props
-    // const listUsers = [{
-    //     id: 1,
-    //     username: "abc",
-    //     email:"fff",
-    //     role:"ADMIN"},
-    //     {
-    //         id: 2,
-    //         username: "adfgbc",
-    //         email:"ffdfbf",
-    //         role:"ADMIN"}
-    // ]
+    // const {listUsers, handleClickBtnUpdate,handleClickBtnView} = props
+
+    const { handleClickBtnUpdate, handleClickBtnView, handleClickBtnDelete } = props
+    const listUsers = [{
+        id: 1,
+        username: "abc",
+        email: "fff",
+        role: "ADMIN"
+    },
+    {
+        id: 2,
+        username: "adfgbc",
+        email: "ffdfbf",
+        role: "ADMIN"
+    }
+    ]
 
     return (
         <>
@@ -38,15 +40,18 @@ const TableUser = (props) => {
                                     <td>{a.email}</td>
                                     <td>{a.role}</td>
                                     <td>
-                                        <button 
-                                        className="btn btn-secondary"
-                                        onClick={()=>handleClickBtnView(a)}
+                                        <button
+                                            className="btn btn-secondary"
+                                            onClick={() => handleClickBtnView(a)}
                                         >View</button>
                                         <button
-                                        className="btn btn-warning mx-3"
-                                        onClick={()=>handleClickBtnUpdate(a)}
+                                            className="btn btn-warning mx-3"
+                                            onClick={() => handleClickBtnUpdate(a)}
                                         >Update</button>
-                                        <button className="btn btn-danger">Delete</button>
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => handleClickBtnDelete(a)}
+                                        >Delete</button>
                                     </td>
                                 </tr>
 
