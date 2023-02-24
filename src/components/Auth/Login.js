@@ -1,6 +1,8 @@
 import { useState } from "react"
 import "./Login.scss"
 import { useNavigate } from "react-router-dom"
+import { postLogin } from "../../services/apiServices"
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
@@ -13,8 +15,19 @@ const Login = () => {
         navigate("/register")
     }
 
-    const handleLogin = ()=>{
-        alert("click me")
+    const handleLogin =async ()=>{
+        //validate
+
+        //submit apis
+        const res = await postLogin(email,password)
+        if (res && res.EC === 0) {
+            toast.success(res.EM)
+            navigate("/")
+
+        }
+        if (res && res.EC !== 0) {
+            toast.error(res.EM)
+        }
     }
 
     return (
@@ -54,6 +67,9 @@ const Login = () => {
                  className="btn-submit"
                  onClick={()=>handleLogin()}
                  >Login</button>
+                </div>
+                <div className="text-center">
+                    <span className="back" onClick={()=>{navigate("/")}}> &#60;&#60; Go to Homepage</span>
                 </div>
             </div>
         </div>

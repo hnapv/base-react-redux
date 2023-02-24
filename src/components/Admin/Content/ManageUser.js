@@ -11,7 +11,7 @@ import ModalDeleteUser from "./ModalDeleteUser"
 import TableUserPaginate from "./TableUserPaginate"
 
 const ManageUser = (props) => {
-    const LIMIT_USER = 1;
+    const LIMIT_USER = 5;
     const [pageCount, setPageCount] = useState(1);
     const [currentPage,setCurrentPage] = useState(1)
     const [showModalCreateUser, setShowModalCreateUser] = useState(false)
@@ -59,10 +59,8 @@ const ManageUser = (props) => {
     }
 
     const fetchListUsersWithPaginate = async (page) => {
-        console.log("page", page)
         const res = await getUserWithPaginate(page, LIMIT_USER)
         if (res.EC === 0) {
-            console.log("res.data=>>", res.DT)
             setListUsers(res.DT.users)
             setPageCount(res.DT.totalPages)
 
