@@ -3,6 +3,8 @@ import "./Login.scss"
 import { useNavigate } from "react-router-dom"
 import { postLogin } from "../../services/apiServices"
 import { toast } from 'react-toastify';
+import { useDispatch } from "react-redux";
+import { doLogin } from "../../redux/action/counterAction";
 
 
 const Login = () => {
@@ -10,6 +12,7 @@ const Login = () => {
     const [password,setPassword]= useState("")
 
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const handleClickBtnSignUp = ()=>{
         navigate("/register")
@@ -19,14 +22,15 @@ const Login = () => {
         //validate
 
         //submit apis
-        const res = await postLogin(email,password)
-        if (res && res.EC === 0) {
-            toast.success(res.EM)
+        const data = await postLogin(email,password)
+        if (data && data.EC === 0) {
+            dispatch(doLogin(data))
+            toast.success(data.EM)
             navigate("/")
 
         }
-        if (res && res.EC !== 0) {
-            toast.error(res.EM)
+        if (data && data.EC !== 0) {
+            toast.error(data.EM)
         }
     }
 
